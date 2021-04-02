@@ -19,7 +19,7 @@ module.exports = function (strings, ...values) {
     const req = lines.join('\n')
     console.log(`"${req}"`)
     con.end(req)
-    let out = new Buffer(0)
+    let out = new Buffer.allocUnsafe(0)
     con.on('data', d => out = Buffer.concat([out, d]))
     con.on('end', () => resolve({
       body: out.toString()
